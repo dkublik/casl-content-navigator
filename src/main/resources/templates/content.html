@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+           h2 {
+            color: #369;
+            font-size:14px;
+           }
+           .paramsC {
+            margin-left: 20px;
+           }
+           ul.tree, ul.tree ul {
+            list-style: none;
+             margin: 0;
+             padding: 0;
+           }
+           ul.tree ul {
+             margin-left: 10px;
+           }
+           ul.tree li {
+             margin: 0;
+             padding: 0 7px;
+             line-height: 20px;
+             color: #369;
+           }
+           ul.tree li:last-child {
+               border-left:none;
+           }
+           .bold {
+            font-weight: bold;
+            margin-right: 10px;
+           }
+        }
+    </style>
+</head>
+<body>
+
+<p th:remove="tag" th:utext="${contentHtml}" />
+</body>
+</html>
