@@ -1,6 +1,5 @@
 package pl.dk.cnavigator;
 
-import com.mongodb.client.FindIterable;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
 import static pl.dk.cnavigator.caslmodel.DocumentProperties.*;
@@ -41,6 +40,27 @@ class ContentCreator {
 
         moveObjects(document, content.getObjects());
 
+        moveTo(document, content.getEditionData(), CREATED_BY);
+        moveTo(document, content.getEditionData(), CREATED);
+        moveTo(document, content.getEditionData(), MINOR);
+        moveTo(document, content.getEditionData(), UPDATED_BY);
+        moveTo(document, content.getEditionData(), UPDATED);
+        moveTo(document, content.getEditionData(), LM);
+        moveTo(document, content.getEditionData(), LAST_MODIFIED);
+        moveTo(document, content.getEditionData(), MODIFICATION_REASON);
+        moveTo(document, content.getEditionData(), CHANGE_DATES);
+
+        moveTo(document, content.getPublishData(), NAMESPACE);
+        moveTo(document, content.getPublishData(), CONTENT_NAMESPACE);
+        moveTo(document, content.getPublishData(), ALL_NAMESPACES);
+        moveTo(document, content.getPublishData(), PUBLISHED_FROM_ENVIRONMENT);
+        moveTo(document, content.getPublishData(), DIST_POLICIES);
+        moveTo(document, content.getPublishData(), DP2_1);
+        moveTo(document, content.getPublishData(), RIGHTS);
+        moveTo(document, content.getPublishData(), PUBLISH_SUMMARY);
+
+        moveTo(document, content.getLinks(), LINKS);
+
         content.getOthers().putAll(document);
         return content;
     }
@@ -66,7 +86,8 @@ class ContentCreator {
 
             Map<UUID, Document> cached = fetchObjects(sourceObjects);
 
-            for (Map<String, Object> objectDoc: sourceObjects) {
+            for (int i = 0; i< sourceObjects.size(); i++) {
+                Map<String, Object> objectDoc = sourceObjects.get(i);
                 String objectTitle = (String) cached.get(objectDoc.get(OBJECT)).get(TITLE);
                 String typeTitle = (String) cached.get(objectDoc.get(TYPE)).get(TITLE);
                 ContentObject contentObject = new ContentObject();
@@ -74,9 +95,9 @@ class ContentCreator {
                 contentObject.setContentType((String) objectDoc.get(CONTENT_TYPE));
                 contentObject.setId((UUID) objectDoc.get(OBJECT));
                 contentObject.setTitle(objectTitle);
-                contentObject.setTypeId((UUID) objectDoc.get(OBJECT));
+                contentObject.setTypeId((UUID) objectDoc.get(TYPE));
                 contentObject.setTypeTitle(typeTitle);
-                target.put((String) objectDoc.get(ITEM_ID), contentObject);
+                target.put(i + "", contentObject);
             }
         }
     }

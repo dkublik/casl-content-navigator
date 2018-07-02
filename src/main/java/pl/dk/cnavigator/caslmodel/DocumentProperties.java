@@ -14,10 +14,6 @@ public class DocumentProperties {
 
     public static final String CONTENT_TYPE = "mtvi:contentType";
 
-    public static final String UPDATED = "mtvi:updated";
-
-    public static final String LM = "_lm";
-
     public static final String MASTER_LINK = "MasterLink";
 
     public static final String LINKS = "_links";
@@ -74,9 +70,15 @@ public class DocumentProperties {
 
     public static final String VIDEO_ASSET_REFS = "VideoAssetRefs";
 
-    public static final String CHANGE_DATES = "_changeDates";
+    public static final String NAMESPACE = "mtvi:namespace";
+
+    public static final String CONTENT_NAMESPACE = "mtvi:contentNamespace";
+
+    public static final String PUBLISHED_FROM_ENVIRONMENT=  "mtvi:publishedFromEnvironment";
 
     public static final String DP2_1 = "_dp2_1";
+
+    public static final String RIGHTS = "_rights";
 
     public static final String RULES = "_rules";
 
@@ -91,6 +93,8 @@ public class DocumentProperties {
     public static final String END_DATE = "_endDate";
 
     public static final String NAMESPACE_NAME = "mtvi:namespacename";
+
+    public static final String PUBLISH_SUMMARY = "mtvi:publishSummary";
 
     public static final String IMPORT_CONTENT_NAMESPACES = "mtvi:importContentNamespaces";
 
@@ -115,5 +119,24 @@ public class DocumentProperties {
     public static final String ORG_BUCKET = "OrgBucket";
 
     public static final String PLATFORM_BUCKET = "PlatformBucket";
+
+    public static final String CREATED_BY = "mtvi:createdBy";
+
+    public static final String CREATED = "mtvi:created";
+
+    public static final String MINOR = "mtvi:minor";
+
+    public static final String UPDATED_BY = "mtvi:updatedBy";
+
+    public static final String UPDATED = "mtvi:updated";
+
+    public static final String LM = "_lm";
+
+    public static final String LAST_MODIFIED = "mtvi:lastModified";
+
+    public static final String MODIFICATION_REASON = "ModificationReason";
+
+    public static final String CHANGE_DATES = "_changeDates";
+
 
 }

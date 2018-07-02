@@ -18,4 +18,10 @@ public class Content {
 
     private Map<String, Object> others = new LinkedHashMap<>();
 
+    private Map<String, Object> publishData = new LinkedHashMap<>();
+
+    private Map<String, Object> editionData = new LinkedHashMap<>();
+
+    private Map<String, Object> links = new LinkedHashMap<>();
+
 }

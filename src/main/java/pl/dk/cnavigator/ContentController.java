@@ -40,6 +40,9 @@ class ContentController {
         contentHtml += "<h2>params</h2><div class = 'paramsC'>" + createUl(content.getParams()) + "</div>";
         contentHtml += "<h2>objects</h2><div class = 'paramsC'>" + createUl(content.getObjects()) + "</div>";
         contentHtml += "<h2>others</h2><div class = 'paramsC'>" + createUl(content.getOthers()) + "</div>";
+        contentHtml += "<h2>edition data</h2><div class = 'paramsC'>" + createUl(content.getEditionData()) + "</div>";
+        contentHtml += "<h2>publish data</h2><div class = 'paramsC'>" + createUl(content.getPublishData()) + "</div>";
+        contentHtml += "<h2>links</h2><div class = 'paramsC'>" + createUl(content.getLinks()) + "</div>";
         contentHtml += "</div>";
         model.addAttribute("contentHtml", contentHtml);
         return "content";
@@ -70,7 +73,7 @@ class ContentController {
         } else if (value instanceof String && isUUID((String) value)) {
             return  "<li>" + nullableKey(key) + "<a href='/content/" + value + "'>" + value + "</a></li>";
         } else if (value instanceof ContentObject) {
-            String contentHtml = "<li>[]<ul class = 'tree'>";
+            String contentHtml = "<li>[" + key + "]<ul class = 'tree'>";
             ContentObject contentObject = (ContentObject) value;
             contentHtml += "<li>" + nullableKey(ITEM_ID) + contentObject.getItemId() + "</li>";
             contentHtml += "<li>" + nullableKey(CONTENT_TYPE) + contentObject.getContentType() + "</li>";
