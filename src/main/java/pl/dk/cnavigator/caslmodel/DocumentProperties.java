@@ -28,6 +28,10 @@ public class DocumentProperties {
 
     public static final String TITLE_CI_MTVI = "mtvi:title_ci";
 
+    public static final String SHORT_TITLE = "ShortTitle";
+
+    public static final String SORT_TITLE = "SortTitle";
+
     public static final String PARAMS  = "Params";
 
     public static final String PARAMS_NAME  = "Name";

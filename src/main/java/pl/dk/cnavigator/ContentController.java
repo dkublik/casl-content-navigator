@@ -11,6 +11,7 @@ import pl.dk.cnavigator.repo.ContentRecords;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import static pl.dk.cnavigator.caslmodel.DocumentProperties.CONTENT_TYPE;
@@ -42,10 +43,22 @@ class ContentController {
         contentHtml += "<h2>others</h2><div class = 'paramsC'>" + createUl(content.getOthers()) + "</div>";
         contentHtml += "<h2>edition data</h2><div class = 'paramsC'>" + createUl(content.getEditionData()) + "</div>";
         contentHtml += "<h2>publish data</h2><div class = 'paramsC'>" + createUl(content.getPublishData()) + "</div>";
-        contentHtml += "<h2>links</h2><div class = 'paramsC'>" + createUl(content.getLinks()) + "</div>";
+        contentHtml += "<h2>cmrs</h2><div class = 'paramsC'>" + createUl(content.getCmrs()) + "</div>";
+        contentHtml += "<h2>links</h2><div class = 'paramsC' id = 'linksC'>" + createUl(content.getLinks()) + "</div>";
         contentHtml += "</div>";
         model.addAttribute("contentHtml", contentHtml);
         return "content";
+    }
+
+    private String createUl(Set<UUID> elements) {
+        String contentHtml = "<ul class = 'tree'>";
+        int i = 0;
+        for (UUID element: elements) {
+            contentHtml += createLi("["+ i + "]", element);
+            i++;
+        }
+        contentHtml += "</ul>";
+        return contentHtml;
     }
 
     private String createUl(Map<String, Object> document) {

@@ -2,6 +2,10 @@ package pl.dk.cnavigator;
 
 import org.bson.Document;
 import org.springframework.stereotype.Service;
+
+import static java.util.Collections.emptySet;
+import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.toSet;
 import static pl.dk.cnavigator.caslmodel.DocumentProperties.*;
 import pl.dk.cnavigator.model.Content;
 import pl.dk.cnavigator.model.ContentObject;
@@ -10,9 +14,9 @@ import pl.dk.cnavigator.repo.ContentRecords;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Service
 class ContentCreator {
@@ -35,6 +39,8 @@ class ContentCreator {
         moveTo(document, content.getTitles(), TITLE_CS);
         moveTo(document, content.getTitles(), TITLE_MTVI);
         moveTo(document, content.getTitles(), TITLE_CI_MTVI);
+        moveTo(document, content.getTitles(), SHORT_TITLE);
+        moveTo(document, content.getTitles(), SORT_TITLE);
 
         moveParams(document, content.getParams());
 
@@ -62,6 +68,8 @@ class ContentCreator {
         moveTo(document, content.getLinks(), LINKS);
 
         content.getOthers().putAll(document);
+
+        content.setCmrs(cmrs(content.getId()));
         return content;
     }
 
@@ -111,7 +119,16 @@ class ContentCreator {
 
         List<Document> fetched = contentRecords.findContent(idsToFetch).into(new ArrayList<>());
         return fetched.stream()
-                .collect(Collectors.toMap(d -> (UUID) d.get(ID), Function.identity()));
+                .collect(toMap(d -> (UUID) d.get(ID), Function.identity()));
+    }
+
+    private Set<UUID> cmrs(UUID masterId) {
+        if (masterId == null) {
+            return emptySet();
+        }
+        return contentRecords.findCmrs(masterId).into(new ArrayList<>()).stream()
+                .map(d -> (UUID) d.get(ID))
+                .collect(toSet());
     }
 
 }
