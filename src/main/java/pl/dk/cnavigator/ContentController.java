@@ -30,7 +30,7 @@ class ContentController {
         this.contentCreator = contentCreator;
     }
 
-    // http://localhost:8080/content/26ca2de6-3a9d-45dc-9785-e4063f99d9fb
+    // http://localhost:8082/content/26ca2de6-3a9d-45dc-9785-e4063f99d9fb
     @GetMapping("/content/{id}")
     public String content(@PathVariable(name = "id") UUID id, Model model) {
         Document document = contentRecords.findContent(id);
